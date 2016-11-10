@@ -1,5 +1,4 @@
-# Practical work for Skill Branch DEV-Intensive Node.js & React.js
-
+## Practical work for Skill Branch DEV-Intensive Node.js & React.js
 
 ### Task list
 - [x] **2A**	A + B
