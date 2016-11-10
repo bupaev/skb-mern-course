@@ -1,9 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 
-const app = express();
-app.use(cors());
-
 /**
  * Sum two number. Task 2A
  *
@@ -32,7 +29,7 @@ function getInitials(fullname) {
     .trim()
     .split(/ +/)
     .map((word) => {
-      return word[0].toUpperCase() + word.slice(1).toLowerCase();
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     });
 
   if (words.length > 3) {
@@ -40,7 +37,7 @@ function getInitials(fullname) {
   }
 
   return words.splice(0, words.length - 1).reduce(function(a, b) {
-    return a + ' ' + b[0] + '.';
+    return a + ' ' + b.charAt(0) + '.';
   }, words[0]);
 }
 
@@ -53,32 +50,10 @@ function getInitials(fullname) {
 function getUsername(url) {
   if (!url) { return ''; }
 
-  const parts = url
-    .trim()
-    .split('/')
-    .filter((part) => {
-      return part != '';
-    });
-
-  const hasProtocol = ['http:', 'https:'].indexOf(parts[0]) > -1;
-  let namePart;
-
-  if (parts.length === 1) {
-    namePart = parts[0]
-  } else if (hasProtocol && parts.length > 2) {
-    namePart = parts[2];
-  } else if (!hasProtocol) {
-    namePart = parts[1];
-  } else {
-    return '';
-  }
-
-  const questionMarkPosition = namePart.indexOf('?');
-
-  let nickname = namePart;
-  if (questionMarkPosition != -1) {
-    nickname = nickname.substr(0, questionMarkPosition);
-  }
+  const urlWithoutProtocol = url.split('//')[1] || url;
+  const urlWithoutParameters = urlWithoutProtocol.split('?')[0];
+  const urlMainParts = urlWithoutParameters.split('/');
+  let nickname = urlMainParts[1] || urlMainParts[0];
 
   if (nickname.charAt(0) !== '@') {
     nickname = '@' + nickname;
@@ -86,6 +61,13 @@ function getUsername(url) {
 
   return nickname;
 }
+
+//
+// Express and routing
+//
+
+const app = express();
+app.use(cors());
 
 app.get('/task2A', (req, res) => {
   const result = sum(req.query.a, req.query.b).toString();
