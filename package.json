@@ -3,8 +3,8 @@
   "name": "skill-branch-mern-course",
   "version": "1.1.0",
   "description": "Practical work for Skill Branch DEV-Intensive Node.js & React.js based on kriasoft/babel-starter-kit",
+  "author": "Pavel Buramensky",
   "license": "MIT",
-  "keywords": [],
   "main": "index.js",
   "jsnext:main": "index.es6.js",
   "babel": {
