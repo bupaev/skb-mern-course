@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "skill-branch-mern-course",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Practical work for Skill Branch DEV-Intensive Node.js & React.js based on kriasoft/babel-starter-kit",
   "author": "Pavel Buramensky",
   "license": "MIT",
@@ -24,7 +24,8 @@
     "babel-cli": "^6.18.0",
     "babel-runtime": "^6.11.6",
     "cors": "^2.8.1",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
